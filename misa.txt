@@ -5,4 +5,52 @@ SELECT * FROM employees;
 "SELECT *FROM employees WHERE reportsTo IS NULL;"
 3 seleccione tods los empleados que no son jefes
 "SELECT * FROM employees WHERE employeeNumber IN (SELECT DISTINCT reportsTo FROM employyes WHERE reportsTo IS NOT NULL);"
+4: SELECCIONE TODAS LAS COLUMNAS DE LOS CLIENTES QUE SE ENCUENTRAN EN USA
+SELECCIONE * DESDE clientes DONDE país="Estados Unidos";
 
+5: SELECCIONE EL NOMBRE Y TELEFONO DE LOS CLIENTES COMO NOMBRE EMEPIECE CON "M";
+SELECCIONE el nombre del cliente, el teléfono DESDE los clientes DONDE el nombre del cliente COMO "M %";
+
+6: SELECTIONE TODAS LAS COLUMNAS DE LOS CLIENTES QUE SE ENCUENTREN EN ALEMANIA Y 
+SU NOMBRE CONTENGA '&' ORDENADOS POR NOMBRE DESCENDENTEMENTE
+SELECCIONE * DESDE clientes DONDE país="alemania" Y nombrecliente COMO "%&%" ORDEN POR nombrecliente DESC;
+
+7: SELECCIONE TODAS LAS COLUMNAS DE LAS ORDENES REALIZADAS EL AÑO 2004 ORDENADAS
+POR FECHA DE ENVIO.
+SELECCIONE * DESDE pedidos DONDE orderDate ENTRE "2004-01-01" Y "2004-12-31" ORDEN POR fecha de envío;
+
+8: SELECCIONE TODAS LAS COLUMNAS DE LOS PAGOS REALIZADOS EL 2003 CUYO MONTO SEA 
+MAYOR O IGUAL A 1000 ORDENADOS POR MONTO DESCENDENTEMENTEL.
+SELECCIONE * DESDE pagos DONDE fechapago >="2003-01-01" Y fechapago<="2003-12-31" Y monto >=1000 ORDENAR POR monto DESC;
+
+9 SELECCIONE LOS PAGOS MAS ALTOS DEL 2004
+SELECCIONE * DE pagos DONDE fecha de pago ENTRE '2003-01-01' Y '2003-12-31' ORDENAR POR monto DESC LÍMITE 10;
+
+10 SELCCIONE LOS PAGOS MAS BAJOS DEL 2004
+SELECCIONE * DE pagos DONDE fecha de pago ENTRE '2004-01-01' Y '2004-12-31' ORDENAR POR cantidad ASC LÍMITE 10 ;
+
+11.- seleccione todos los empleados de las oficinas de 'USA'  
+SELECCIONE empleados.*, oficinas.país DESDE empleados ÚNASE a las oficinas ON empleados.códigooficina = oficinas.códigooficina WHERE oficinas.país = 'EE.UU.'; 
+   
+12.- Seleccione el monto total en ventas de los productos de la linea 'Motorcycles'
+SELECCIONE SUMA (pagos.cantidad) COMO total_ventas DE pagos ÚNASE a clientes EN pagos.número de cliente = clientes.Número de cliente ÚNASE a pedidos 
+ON clients.customerNumber = pedidos.customerNumber UNIRSE detalles de pedido ON orders.orderNumber = detalles de pedido.orderNumber UNIRSE productos ON 
+detalles de pedido.productCode = productos.productCode ÚNETE a productLines ON products.productLine = productLines.productLine WHERE productLines.productLine = 'Motocicletas';
+
+13 SELECTCOPNE TODOS LOS PRODUCTOS DE LA LINEA 'TRANS'
+SELECCIONE productos.* DE productos ÚNASE a líneas de productos EN productos.línea de productos = líneas de productos.Línea de productos DONDE líneas de productos.Línea de productos = 'trenes';
+
+14 SELECCIONE TODOS LOS PAGOS REALIZADOS POR 'MINI WHEOLS CO'
+seleccione clientes.* de clientes ÚNASE a pagos ON clientes.pagos = clientes.número_cliente where clientes.número_cliente='Mini Wheels Co.';
+
+
+15) Seleccione todos los pagos realizados por clientes de 'España'
+SELECCIONE pagos.*, clientes.país DESDE clientes ÚNASE pagos ON clientes.númerocliente = pagos.númerocliente WHERE clientes.país = 'España';
+
+16) Seleccione todos los productos correspondientes a las órdenes de compra realizadas el '2003'
+SELECCIONE productos.*, pedidos.fechaDepedido DESDE productos ÚNASE detalles de pedido EN productos.códigodeproducto = detallesdepedido.códigodeproducto 
+ÚNASE a pedidos ON orders.orderNumber = detalles de pedido.orderNumber DONDE pedidos.orderDate ENTRE '2003-01-01' Y '2003-12-31';
+
+17) Seleccione todos los empleados de las oficinas ubicadas en 'USA' cuyos jefes no esten en oficinas de 'USA'
+SELECCIONE empleados.*, oficinas.país DESDE oficinas ÚNASE empleados EN oficinas.códigooficina = empleados.códigooficina 
+WHERE oficinas.país = 'EE. UU.' Y el número de empleado no está en (seleccione distintos informes a de empleados);
